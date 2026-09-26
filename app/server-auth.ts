@@ -1,9 +1,7 @@
 import {env} from 'cloudflare:workers';
-import {getChatGPTUser} from './chatgpt-auth';
 import type {NextRequest} from 'next/server';
 
-// Standalone deployments require a teacher secret. Only a Sites deployment
-// explicitly configured for trusted ChatGPT auth may use injected identity.
+// Teacher access requires the server-side code in every deployment.
 export async function teacherIdentity(req:NextRequest):Promise<string|null>{
   const config=env as unknown as Record<string,string|undefined>;
   const secret=config.TEACHER_ACCESS_KEY;
@@ -15,6 +13,5 @@ export async function teacherIdentity(req:NextRequest):Promise<string|null>{
     let diff=0;for(let i=0;i<a.length;i++)diff|=a[i]^b[i];
     return diff===0?'portable-teacher':null;
   }
-  if(config.SITES_CHATGPT_AUTH==='enabled')return (await getChatGPTUser())?.userId??null;
   return null;
 }
