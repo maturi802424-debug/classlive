@@ -43,6 +43,13 @@
       "when": 1790385730892,
       "tag": "0005_amused_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1790424188120,
+      "tag": "0006_magenta_sebastian_shaw",
+      "breakpoints": true
     }
   ]
 }
